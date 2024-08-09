@@ -6,18 +6,37 @@ ACCOUNTANT = "accountant"
 TODO = "anti-procrastinator"
 FOOD_DIARY = "feeder"
 POSITIVE_WORDS = "encourager"
-TIMETABLE = "organizer"
+SCHEDULE = "scheduler"
 
-PKEY = 'INTEGER PRIMARY KEY AUTOINCREMENT'
+PKEY = 'PRIMARY KEY'
+STR = 'TEXT'
+INT = 'INTEGER'
+DBL = 'REAL'
+NONEMPTY = 'NOT NULL'
+
 DEFAULT_TYPE = 'TEXT NOT NULL'
 DB_COLUMNS = {
-    CREDENTIALS : {'id': PKEY, 'site': DEFAULT_TYPE, 'username': DEFAULT_TYPE, 'password': DEFAULT_TYPE},
-    ACCOUNTANT : {'id': PKEY, 'time': DEFAULT_TYPE, 'description': DEFAULT_TYPE, 'transaction': DEFAULT_TYPE},
-    TODO : {'id': PKEY, 'task': DEFAULT_TYPE, 'status': DEFAULT_TYPE},
-    FOOD_DIARY : {'id': PKEY, 'date': DEFAULT_TYPE, 'meal': DEFAULT_TYPE, 'description': DEFAULT_TYPE},
-    POSITIVE_WORDS : {'id': PKEY, 'word': DEFAULT_TYPE},
-    TIMETABLE : {'id': PKEY, 'date': DEFAULT_TYPE, 'time': DEFAULT_TYPE, 'event': DEFAULT_TYPE}
+    CREDENTIALS : {'site': f'{STR}', 'username': f'{STR} {NONEMPTY}', 'password': f'{STR} {NONEMPTY}'},
+    ACCOUNTANT : {'transaction_id': f'{INT} AUTOINCREMENT', 'time': '{STR} {NONEMPTY}', 'description': STR, 'amount': f'{DBL} {NONEMPTY}'},
+    TODO : {'task_id': f'{INT} AUTOINCREMENT', 'task': f'{STR} {NONEMPTY}', 'completed': f'{INT} {NONEMPTY}'},
+    FOOD_DIARY : {'meal': f'{STR} {NONEMPTY}', 'description': STR},
+    POSITIVE_WORDS : {'comment_id': f'{INT} AUTOINCREMENT', 'word': f'{STR} {NONEMPTY}'},
+    SCHEDULE : {'time': f'{STR} {NONEMPTY}', 'event': f'{STR} {NONEMPTY}'}
 }
+
+PRIMARY_KEYS = {
+    CREDENTIALS : ('site', 'username'),
+    ACCOUNTANT : 'transaction_id',
+    TODO : 'task_id',
+    FOOD_DIARY : 'meal',
+    POSITIVE_WORDS : 'comment_id',
+    SCHEDULE : 'time'
+}
+
+def get_cols(table):
+    cols = DB_COLUMNS[table].keys()
+    cols.remove('id')
+    return cols
 
 # General constants
 DATE_FMT = '%Y-%m-%d'

@@ -10,15 +10,10 @@ class Database:
     def create_tables(self):
         for table_name, columns in DB_COLUMNS.items():
             command = f"CREATE TABLE IF NOT EXISTS {table_name} ("
-            cols = columns.items()
-            ncols = len(cols)
-            for i, (column, requirement) in enumerate(cols):
-                command += f"{column} {requirement}"
-                if i == ncols:
-                    command += ')'
-                else:
-                    command += ','
-
+            for column, requirement in columns.items():
+                command += f"{column} {requirement},"
+                
+            command += f'PRIMARY KEY ({PRIMARY_KEYS[table_name]})'
             self.cursor.execute(command)
         self.connection.commit()
 
