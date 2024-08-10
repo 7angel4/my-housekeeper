@@ -1,4 +1,3 @@
-import getpass
 from database import Database
 from constants import *
 

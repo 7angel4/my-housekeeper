@@ -1,11 +1,12 @@
 import sqlite3
 from constants import *
 
-class Database:
-    def __init__(self):
-        self.connection = sqlite3.connect(DB_NAME)
-        self.cursor = self.connection.cursor()
-        self.create_tables()
+class Database(object):
+    """Singleton database"""
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Database, cls).__new__(cls)
+        return cls.instance
 
     def create_tables(self):
         for table_name, columns in DB_COLUMNS.items():
@@ -16,6 +17,11 @@ class Database:
             command += f'PRIMARY KEY ({PRIMARY_KEYS[table_name]})'
             self.cursor.execute(command)
         self.connection.commit()
+
+    def __init__(self):
+        self.connection = sqlite3.connect(DB_NAME)
+        self.cursor = self.connection.cursor()
+        self.create_tables()
 
     def execute_query(self, query, params=()):
         self.cursor.execute(query, params)
