@@ -14,8 +14,9 @@ class Database(object):
             for column, requirement in columns.items():
                 command += f"{column} {requirement},"
                 
-            command += f'PRIMARY KEY ({PRIMARY_KEYS[table_name]})'
+            command += f'PRIMARY KEY ({parse_pk(table_name)}))'
             self.cursor.execute(command)
+        
         self.connection.commit()
 
     def __init__(self):
