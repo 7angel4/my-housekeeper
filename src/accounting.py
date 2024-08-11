@@ -2,7 +2,7 @@ from database import Database
 from tabulate import tabulate
 from constants import *
 import datetime as dt
-import argparse
+from argparse import BooleanOptionalAction
 
 class Accountant:
     def __init__(self):
@@ -82,13 +82,13 @@ def subparsers(parser):
     list_parser = subparsers.add_parser('list', help='List transactions')
     list_parser.add_argument('-d', '--date', **date_kwargs)
     list_parser.add_argument('-t', '--time', required=False, **time_kwargs)
-    list_parser.add_argument('-a', '--all', action=argparse.BooleanOptionalAction, help='boolean flag: whether to list all transactions')
+    list_parser.add_argument('-a', '--all', action=BooleanOptionalAction, help='boolean flag: whether to list all transactions')
 
     # delete transaction
     del_parser = subparsers.add_parser('delete', help='Delete transaction(s)')
     del_parser.add_argument('-d', '--date', **date_kwargs)
     del_parser.add_argument('-t', '--time', default=dt.datetime.now(), **time_kwargs)
-    del_parser.add_argument('-a', '--all', action=argparse.BooleanOptionalAction, help='boolean flag: whether to delete all transactions on the given date')
+    del_parser.add_argument('-a', '--all', action=BooleanOptionalAction, help='boolean flag: whether to delete all transactions on the given date')
 
     return subparsers
 

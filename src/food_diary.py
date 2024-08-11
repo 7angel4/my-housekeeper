@@ -3,7 +3,6 @@ from constants import *
 from enum import Enum
 import datetime as dt
 from tabulate import tabulate
-import argparse
 
 class Meal(Enum):
     breakfast = 0

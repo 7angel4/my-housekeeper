@@ -1,6 +1,5 @@
 from database import Database
 from constants import *
-import argparse
 
 class UserExistsException(Exception):
     """
