@@ -1,19 +1,14 @@
 from database import Database
 from constants import *
+import argparse
 
 class UserExistsException(Exception):
     """
     Exception raised when trying to add a password to a site and username 
     that already has a password.
-
-    Attributes:
-        password -- input password which caused the error
-        message -- explanation of the error
     """
-    def __init__(self, password, message=f'Password already exists for the given site and username'):
-        self.password = password
-        self.message = message
-        super().__init__(self.message)
+    def __init__(self):
+        super().__init__('Password already exists for the given site and username')
 
 class IncorrectPasswordException(Exception):
     """
@@ -75,6 +70,36 @@ class CredentialsManager:
         print(f'{"USERNAME":10s}:', username)
         print(f'{"PASSWORD":10s}:', password)
 
+def subparsers(parser):
+    subparsers = parser.add_subparsers(
+        title='subcommands', help='actions on credentials', dest='action'
+    )
+
+    # add credentials
+    add_parser = subparsers.add_parser('add', help='Add a new credential')
+    add_parser.add_argument('-s', '--site', required=True, help='site name')
+    add_parser.add_argument('-u', '--username', required=True, help='username')
+    add_parser.add_argument('-p', '--password', required=True, help='password')
+
+    # update credentials
+    update_parser = subparsers.add_parser('update', help='Update a credential')
+    update_parser.add_argument('-s', '--site', required=True, help='site name')
+    update_parser.add_argument('-u', '--username', required=True, help='username')
+    update_parser.add_argument('-op', '--old-password', required=True, help='old password')
+    update_parser.add_argument('-np', '--new-password', required=True, help='new password')
+
+    # get credentials
+    get_parser = subparsers.add_parser('get', help='Get credential(s)')
+    get_parser.add_argument('-s', '--site', required=True, help='site name')
+    get_parser.add_argument('-u', '--username', required=False, help='username (if not provided, lists all stored credentials)')
+
+    # delete credentials
+    del_parser = subparsers.add_parser('delete', help='Delete a credential')
+    del_parser.add_argument('-s', '--site', required=True, help='site name')
+    del_parser.add_argument('-u', '--username', required=True, help='username')
+
+    return subparsers
+
 def handle_cli(args):
     cm = CredentialsManager()
     if args.action == 'add':
@@ -97,32 +122,4 @@ def handle_cli(args):
     elif args.action == 'delete':
         cm.delete_credentials(args.site, args.username)
         print('Deleted credentials for', args.site)
-
-def subparsers(parser):
-    subparsers = parser.add_subparsers(
-        title='subcommands', help='actions on credentials', dest='action')
-
-    # add credentials
-    add_parser = subparsers.add_parser('add', help='Add a new credential')
-    add_parser.add_argument('-s', '--site', required=True, help='site name')
-    add_parser.add_argument('-u', '--username', required=True, help='username')
-    add_parser.add_argument('-p', '--password', required=True, help='password')
-
-    # update credentials
-    update_parser = subparsers.add_parser('update', help='Update a credential')
-    update_parser.add_argument('-s', '--site', required=True, help='site name')
-    update_parser.add_argument('-u', '--username', required=True, help='username')
-    update_parser.add_argument('-op', '--old-password', required=True, help='old password')
-    update_parser.add_argument('-np', '--new-password', required=True, help='new password')
-
-    # get credentials
-    get_parser = subparsers.add_parser('get', help='Get credential(s)s')
-    get_parser.add_argument('-s', '--site', required=True, help='site name')
-    get_parser.add_argument('-u', '--username', required=False, help='username (if not provided, lists all stored credentials)')
-
-    # delete credentials
-    del_parser = subparsers.add_parser('delete', help='Delete a credential')
-    del_parser.add_argument('-s', '--site', required=True, help='site name')
-    del_parser.add_argument('-u', '--username', required=True, help='username')
-
-    return subparsers
+   
