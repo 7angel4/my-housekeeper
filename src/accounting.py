@@ -4,19 +4,6 @@ from constants import *
 import datetime as dt
 import argparse
 
-
-def date_to_str(date):
-    return dt.date.strftime(date, DATE_FMT)
-
-def time_to_str(time):
-    return dt.time.strftime(time, TIME_FMT)
-
-def datetime_to_str(datetime):
-    return dt.datetime.strftime(datetime, DATETIME_FMT)
-
-def combine_datetime_str(date, time):
-    return datetime_to_str(dt.datetime.combine(date, time))
-
 class Accountant:
     def __init__(self):
         self.db = Database()

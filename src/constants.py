@@ -1,3 +1,5 @@
+import datetime as dt
+
 APP_NAME = "housekeeper"
 DB_NAME = APP_NAME + ".db"
 
@@ -44,10 +46,22 @@ DATE_FMT = '%Y-%m-%d'
 TIME_FMT = '%H:%M:%S'
 DATETIME_FMT = DATE_FMT + ' ' + TIME_FMT
 
-# Exceptions
-class UnknownCommandException(Exception):
+def date_to_str(date):
+    return dt.date.strftime(date, DATE_FMT)
+
+def time_to_str(time):
+    return dt.time.strftime(time, TIME_FMT)
+
+def datetime_to_str(datetime):
+    return dt.datetime.strftime(datetime, DATETIME_FMT)
+
+def combine_datetime_str(date, time):
+    return datetime_to_str(dt.datetime.combine(date, time))
+
+class RecordNotFoundException(Exception):
     """
-    Exception raised for an unknown command.
+    Exception raised when a queried record is not found
+    (e.g. trying to update a non-existent record).
     """
     def __init__(self):
-        super().__init__('Unknown command')
+        super().__init__('Record not found')
