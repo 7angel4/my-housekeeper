@@ -4,6 +4,7 @@ from constants import *
 import accounting
 import credentials
 import food_diary
+import positivity
 import todo
 
 def cli():
@@ -24,6 +25,9 @@ def cli():
     todo_parser = subparsers.add_parser(TODO, help=TODO)
     todo.subparsers(todo_parser)
 
+    positivity_parser = subparsers.add_parser(POSITIVITY, help=POSITIVITY)
+    positivity.subparsers(positivity_parser)
+
     return global_parser.parse_args()
 
 def main():
@@ -36,6 +40,8 @@ def main():
         food_diary.handle_cli(args)
     elif args.command == TODO:
         todo.handle_cli(args)
+    elif args.command == POSITIVITY:
+        positivity.handle_cli(args)
     else:
         print('Unknown command')
 

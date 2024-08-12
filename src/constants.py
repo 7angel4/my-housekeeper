@@ -7,7 +7,7 @@ CREDENTIALS = "locker"
 ACCOUNTING = "accountant"
 TODO = "anti_procrastinator"
 FOOD_DIARY = "feeder"
-POSITIVE_WORDS = "encourager"
+POSITIVITY = "encourager"
 SCHEDULE = "scheduler"
 
 PKEY = 'PRIMARY KEY'
@@ -21,7 +21,6 @@ DB_COLUMNS = {
     ACCOUNTING : {'datetime': f'{STR} {NONEMPTY}', 'description': STR, 'amount': f'{DBL} {NONEMPTY}'},
     TODO : {'date': f'{STR} {NONEMPTY}', 'task': f'{STR} {NONEMPTY}', 'duration': DBL, 'completed': f'{INT} {NONEMPTY}'},
     FOOD_DIARY : {'date': f'{STR} {NONEMPTY}', 'meal': f'{STR} {NONEMPTY}', 'description': STR},
-    POSITIVE_WORDS : {'comment_id': f'{INT} {NONEMPTY}', 'comment': f'{STR} {NONEMPTY}'},
     SCHEDULE : {'datetime': f'{STR} {NONEMPTY}', 'event': f'{STR} {NONEMPTY}'}
 }
 
@@ -30,7 +29,6 @@ PRIMARY_KEYS = {
     ACCOUNTING : ('datetime',),
     TODO : ('date', 'task'),
     FOOD_DIARY : ('date', 'meal'),
-    POSITIVE_WORDS : ('comment_id',),
     SCHEDULE : ('datetime',)
 }
 
