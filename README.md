@@ -1,2 +1,2 @@
-# password-manager
- A simple password manager
+# housekeeper
+ A simple housekeeper
