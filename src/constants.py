@@ -19,7 +19,7 @@ NONEMPTY = 'NOT NULL'
 DB_COLUMNS = {
     CREDENTIALS : {'site': f'{STR} {NONEMPTY}', 'username': f'{STR} {NONEMPTY}', 'password': f'{STR} {NONEMPTY}'},
     ACCOUNTING : {'datetime': f'{STR} {NONEMPTY}', 'description': STR, 'amount': f'{DBL} {NONEMPTY}'},
-    TODO : {'date': f'{STR} {NONEMPTY}', 'task': f'{STR} {NONEMPTY}', 'completed': f'{INT} {NONEMPTY}'},
+    TODO : {'date': f'{STR} {NONEMPTY}', 'task': f'{STR} {NONEMPTY}', 'duration': DBL, 'completed': f'{INT} {NONEMPTY}'},
     FOOD_DIARY : {'date': f'{STR} {NONEMPTY}', 'meal': f'{STR} {NONEMPTY}', 'description': STR},
     POSITIVE_WORDS : {'comment_id': f'{INT} {NONEMPTY}', 'comment': f'{STR} {NONEMPTY}'},
     SCHEDULE : {'datetime': f'{STR} {NONEMPTY}', 'event': f'{STR} {NONEMPTY}'}
@@ -57,6 +57,9 @@ def datetime_to_str(datetime):
 
 def combine_datetime_str(date, time):
     return datetime_to_str(dt.datetime.combine(date, time))
+
+def str_to_bool(s):
+    return s.lower() in ['true', '1', 't', 'y', 'yes'] if s != None else None
 
 class RecordNotFoundException(Exception):
     """
