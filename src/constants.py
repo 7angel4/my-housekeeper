@@ -5,10 +5,9 @@ DB_NAME = APP_NAME + ".db"
 
 CREDENTIALS = "locker"
 ACCOUNTING = "accountant"
-TODO = "anti_procrastinator"
+TODO = "scheduler"
 FOOD_DIARY = "feeder"
 POSITIVITY = "encourager"
-SCHEDULE = "scheduler"
 
 PKEY = 'PRIMARY KEY'
 STR = 'TEXT'
@@ -21,7 +20,6 @@ DB_COLUMNS = {
     ACCOUNTING : {'datetime': f'{STR} {NONEMPTY}', 'description': STR, 'amount': f'{DBL} {NONEMPTY}'},
     TODO : {'date': f'{STR} {NONEMPTY}', 'task': f'{STR} {NONEMPTY}', 'duration': DBL, 'completed': f'{INT} {NONEMPTY}'},
     FOOD_DIARY : {'date': f'{STR} {NONEMPTY}', 'meal': f'{STR} {NONEMPTY}', 'description': STR},
-    SCHEDULE : {'datetime': f'{STR} {NONEMPTY}', 'event': f'{STR} {NONEMPTY}'}
 }
 
 PRIMARY_KEYS = {
@@ -29,7 +27,6 @@ PRIMARY_KEYS = {
     ACCOUNTING : ('datetime',),
     TODO : ('date', 'task'),
     FOOD_DIARY : ('date', 'meal'),
-    SCHEDULE : ('datetime',)
 }
 
 def get_cols(table):
