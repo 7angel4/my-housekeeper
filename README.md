@@ -33,7 +33,20 @@ git clone https://github.com/7angel4/my-housekeeper.git
 cd my-housekeeper
 ```
 
-### 2. Install the Package
+### 2. Check `$PYTHONPATH`
+
+You can check the current value of `PYTHONPATH` by running:
+```bash
+echo $PYTHONPATH
+```
+If it’s not set or doesn’t include the directory where your package is located, you can set it like this:
+```bash
+export PYTHONPATH=</path/to/your/my-housekeeper>
+```
+Replace `</path/to/your/my-housekeeper>` with the actual path of the `my-housekeepr` directory you cloned.
+
+
+### 3. Install the Package
 
 You can install the package using `pip`:
 
