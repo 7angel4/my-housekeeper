@@ -1,8 +1,9 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='housekeeper',
     version='1.0',
+    packages=find_packages(where='src'),
     py_modules=['housekeeper'],
     install_requires=[
         'tabulate',            
@@ -10,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'housekeeper=src.housekeeper:main',
+            'housekeeper=housekeeper:main',
         ],
     },
 )
