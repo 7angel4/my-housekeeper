@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'housekeeper=housekeeper:main',
+            'housekeeper=src.housekeeper:main',
         ],
     },
 )
