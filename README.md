@@ -35,7 +35,7 @@ cd my-housekeeper
 
 ### 2. Check `$PYTHONPATH`
 
-You can check the current value of `PYTHONPATH` by running:
+You can check the current value of the `PYTHONPATH` environment variable by running:
 ```bash
 echo $PYTHONPATH
 ```
