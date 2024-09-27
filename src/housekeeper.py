@@ -1,5 +1,5 @@
 import argparse
-from constants import *
+from .constants import *
 
 import accounting
 import credentials

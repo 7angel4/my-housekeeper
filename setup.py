@@ -4,9 +4,10 @@ setup(
     name='my-housekeeper',  
     version='1.0',          
     packages=find_packages(where='src'),  
+    package_dir={'': 'src'},              
     entry_points={
         'console_scripts': [
-            'housekeeper=src.housekeeper:main', 
+            'housekeeper=housekeeper:main', 
         ],
     },
     install_requires=[
