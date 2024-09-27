@@ -1,7 +1,6 @@
 from database import Database
 from constants import *
 from tabulate import tabulate
-from argparse import BooleanOptionalAction
 
 import google.generativeai as genai
 import os
@@ -40,7 +39,7 @@ def generate(context=None, prompt=None, max_tokens=60, temperature=0.7):
 
 def subparsers(parser):
     subparsers = parser.add_subparsers(
-        title='subcommands', help='interact with AI {POSITIVE_WORDS}', dest='action'
+        title='subcommands', help=f'interact with AI {POSITIVITY}', dest='action'
     )
 
     gen_parser = subparsers.add_parser('generate', help='Generate some positivity')

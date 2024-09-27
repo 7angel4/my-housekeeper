@@ -37,8 +37,8 @@ def parse_pk(table):
     return pk[0] if len(pk) == 1 else ', '.join(pk)
 
 # General constants
-DATE_FMT = '%Y-%m-%d'
-TIME_FMT = '%H:%M:%S'
+DATE_FMT = '%%Y-%%m-%%d'
+TIME_FMT = '%%H:%%M:%%S'
 DATETIME_FMT = DATE_FMT + ' ' + TIME_FMT
 
 def date_to_str(date):
