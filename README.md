@@ -62,6 +62,8 @@ or
 housekeeper scheduler --help
 ```
 
+### Using the housekeeper
+
 To add a new task "download my-housekeeper" on April 15, 2024, with estimated duration 0.000001 hrs, using the scheduler:
 ```bash
 housekeeper scheduler add -d 2024-04-15 -t "download my-housekeeper" -du 0.000001
