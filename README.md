@@ -20,6 +20,7 @@ housekeeper [-h] {accountant,locker,feeder,encourager,scheduler} ...
 ### General Options
 
 - `-h, --help`: Show the help message and exit.
+- See help for more.
 
 ## Installation
 
