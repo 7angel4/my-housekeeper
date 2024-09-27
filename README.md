@@ -9,10 +9,10 @@
 housekeeper [-h] {accountant,locker,feeder,encourager,scheduler} ...
 ```
 
-### Commands
+### Subcommands
 
-- **accountant**: Add, update, list, delete transactions.
-- **locker**: Add, update, get, delete credentials.
+- **`accountant`**: Add, update, list, delete transactions.
+- **`locker`**: Add, update, get, delete credentials.
 - **feeder**: Add, update, list, delete meals.
 - **encourager**: Interact with AI encourager.
 - **scheduler**: Add, complete, list, delete tasks.
