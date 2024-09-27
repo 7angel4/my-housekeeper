@@ -30,7 +30,7 @@ To get started, clone this repository to your local machine:
 
 ```bash
 git clone https://github.com/7angel4/my-housekeeper.git
-cd housekeeper
+cd my-housekeeper
 ```
 
 ### 2. Install the Package
